@@ -5,7 +5,3 @@ class FourCal:
 
 a = FourCal()
 a.setdata(4, 2)
-print("진서연 븅딱")
-
-a = 5
-print(a)
