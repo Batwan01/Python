@@ -4,4 +4,7 @@ class FourCal:
     self.second = second
 
 a = FourCal()
-a.setdata(4, 2)
+a.firsts = 4
+a.second = 3
+print(a.first)
+print(a.second)
