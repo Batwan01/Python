@@ -1,10 +1,8 @@
-a, b = map(str, input().split())
-list_a = list(a)
-list_a.reverse()
-int_a = int(list_a)
-print(int_a)
+a, b = input().split()
+int_a = int("".join(reversed(a)))
+int_b = int("".join(reversed(b)))
 
-#list_b = list(b)
-#list_b.reverse()
-#print(list_b)
-
+if int_a > int_b:
+  print(int_a)
+else:
+  print(int_b)
