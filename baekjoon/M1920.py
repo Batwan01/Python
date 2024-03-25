@@ -7,5 +7,5 @@ compar = list(map(int, input().split()))
 for i in compar:
     if i in answer:
         print('1')
-    else:
+    else:   
         print('0')
