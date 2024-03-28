@@ -15,9 +15,6 @@ for i in range(N):
         else:
             print(que.pop(0))
     elif instr[0] == 'size':
-        if len(que) == 0:
-            print('-1')
-        else:
             print(len(que))
     elif instr[0] == 'empty':
         if len(que) == 0:
