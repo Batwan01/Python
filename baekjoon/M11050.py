@@ -1,12 +1,14 @@
 import sys
-sys.setrecursionlimit(10**9)
-
 input = sys.stdin.readline
+
 def facotrial(N):
-    if N==1:
-        return 1
-    return N * facotrial(N-1)
+    result = 1
+    for i in range(2,N+1):
+        result *= i
+    return result
 
 N, K = map(int, input().split())
-
-print(int(facotrial(N)/(facotrial(K)*facotrial(N-K))))
+if N==K:
+    print(1)
+else:
+    print(int(facotrial(N)/(facotrial(K)*facotrial(N-K))))
