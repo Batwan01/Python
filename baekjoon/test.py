@@ -1,7 +1,4 @@
-import sys
-input = sys.stdin.readline
+sum = 74+59+33+6
+submit = 168+73+33+6
 
-for i in range(100):
-    exc = round(i*0.15)
-    if i-exc==0:
-        print('i : ', i , 'exc : ', exc, 'sum : ', i-exc)
+print(47+88+100+54)
