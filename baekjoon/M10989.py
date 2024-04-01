@@ -1,10 +1,10 @@
 import sys
-
-N  = int(sys.stdin.readline())
+input = sys.stdin.readline
+N  = int(input())
 arr = [0]*10001
 
 for _ in range(N):
-    num = int(sys.stdin.readline())
+    num = int(input())
     arr[num] += 1
 
 for i in range(10001): 
