@@ -14,4 +14,3 @@ for i in range(N):
 
 for i in range(N):
     print(array[i][2], end = ' ')
-    #2 2 1 2 5
