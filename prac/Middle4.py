@@ -1,10 +1,10 @@
-file_name = "numbers.txt"
+fi = open('data.txt','r',encoding='utf-8')
 
-total = 0
+str = fi.read()
+lst = str.split()
+sum = 0
 
-with open(file_name, 'r') as file:
-    for line in file:
-        num = int(line.strip())
-        total += num
+for num in lst:
+    sum += int(num)
 
-print("정수 10개의 합:", total)
+print('합계:',sum)

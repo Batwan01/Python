@@ -1,8 +1,8 @@
-from random import randint
+import random as r
 
 count = 0
 for i in range(1000):
-    if randint(1, 6) == 2:
+    if r.randint(1, 6) == 2:
         count+=1
 
 
