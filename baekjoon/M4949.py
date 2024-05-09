@@ -1,50 +1,30 @@
-word = []
-count = 0
-flag = True
-
 while True:
-    word.append(input())
-    count += 1
-    if word[0] == '.':
+  str = input()
+  check = [] #괄호를 체크하기 위한 배열
+  answer = 'yes'
+  if str == '.':
+    break
+  for s in str:
+    if s=='(' or s=='[': #열린 괄호가 들어오면 check 배열에 추가한다
+      check.append(s)
+    elif s == ')':
+      if not len(check): # '(' 괄호가 나오기 전에 ')' 괄호가 나온 경우
+        answer = 'no'
         break
-    elif word[-1][-1] == '.':
-        while True:
-            stack = []
-            if len(word) == 0:
-                break
-            words = word.pop(0)
-            count -= 1
-            for i in range(len(words)):
-                if words[i] == '(' or words[i] == '[' or words[i] == '{':
-                    stack.append(words[i])
-                elif words[i] == ')' and len(stack) != 0:
-                    if stack.pop() == '(':
-                        continue
-                    else:
-                        print('no')
-                        flag = False
-                        break
-                elif words[i] == '] and len(stack) != 0':
-                    if stack.pop() == '[':
-                        continue
-                    else:
-                        print('no')
-                        flag = False
-                        break
-                elif words[i] == '}' and len(stack) != 0:
-                    if stack.pop() == '{':
-                        continue
-                    else:
-                        print('no')
-                        flag = False
-                        break
-                else:
-                    flag = False
-                    print('no')
-                    break
-            if flag == True:
-                print('yes')
-            else:
-                flag = True
+      else:
+        if check.pop(-1) != '(':
+          answer = 'no'
+          break
+    elif s == ']':
+      if not len(check): # '[' 괄호가 나오기 전에 ']' 괄호가 나온 경우
+        answer = 'no'
+        break
+      else:
+        if check.pop() != '[':
+          answer = 'no'
+          break
     else:
-        continue
+      continue
+  if len(check): #괄호 검사가 끝나고 난 후에도 배열에 괄호가 남아있는 경우
+    answer = 'no'
+  print(answer)
