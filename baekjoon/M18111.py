@@ -17,28 +17,55 @@
 import sys
 input = sys.stdin.readline
 
-N, M, B = map(int,input().split())
-SUM = 0
-arr = []
+while True:
+    N, M, B = map(int,input().split())
 
-for i in range(N):
-    arr.extend(list(map(int, input().split())))
+    arr = []
+    answer = []
+    flag = False
 
-avg = round(sum(arr)/(N*M))
-diff = [num - avg for num in arr]
-diff_num = B + sum(num for num in diff if num<0)
-print(diff)
+    for i in range(N):
+            arr.extend(list(map(int, input().split())))
 
-if diff_num < 0:
-    diff = [num-1 if num>0 else num+1 for num in diff]
-    avg-=1
-print(diff)
-for num in diff:
-    if num == 0:
-        continue
-    elif num > 0:
-        SUM+=2*abs(num)
-    else:
-        SUM+=1
+    for i in range(2):
+        if flag:
+            break
+        avg = round(sum(arr)/(N*M))+i
+        diff = [num - avg for num in arr]
+        #print('diff',diff)
+        if sum(diff) < 0 and B + sum(diff) < 0:
+            diff = [num-1 if num>0 else num+1 for num in diff]
+            avg-=1
+            flag = True
+            if B + sum(diff) < 0 and flag:
+                print('작동')
+                print(SUM_1,avg_1)
+                break
+        #print('diff', diff)
+        #print('sum', sum(diff))
+        #print('avg', avg)
 
-print(SUM, avg)
+        SUM = 0
+        for num in diff:
+            if num == 0:
+                continue
+            elif num > 0:
+                SUM+=2*num #파기
+            else:
+                SUM+=abs(num)
+
+        print(SUM,avg)
+
+        if i==0:
+            if flag:
+                print(SUM,avg)
+            else:
+                SUM_1 = SUM
+                avg_1 = avg
+        else:
+            if SUM==SUM_1:
+                print(SUM,avg)
+            elif SUM<SUM_1:
+                print(SUM,avg)
+            else:
+                print(SUM_1,avg_1)
