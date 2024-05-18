@@ -17,55 +17,39 @@
 import sys
 input = sys.stdin.readline
 
-while True:
-    N, M, B = map(int,input().split())
+N, M, B = map(int, input().split())
+arr = []
+for i in range(N):
+    arr.extend(list(map(int, input().split())))
 
-    arr = []
-    answer = []
-    flag = False
+# 초기 통계 수집
+max_height = max(arr)
+min_height = min(arr)
 
-    for i in range(N):
-            arr.extend(list(map(int, input().split())))
+# 블록 수를 기록할 배열
+height_count = [0] * 257
+for height in arr:
+    height_count[height] += 1
 
-    for i in range(2):
-        if flag:
-            break
-        avg = round(sum(arr)/(N*M))+i
-        diff = [num - avg for num in arr]
-        #print('diff',diff)
-        if sum(diff) < 0 and B + sum(diff) < 0:
-            diff = [num-1 if num>0 else num+1 for num in diff]
-            avg-=1
-            flag = True
-            if B + sum(diff) < 0 and flag:
-                print('작동')
-                print(SUM_1,avg_1)
-                break
-        #print('diff', diff)
-        #print('sum', sum(diff))
-        #print('avg', avg)
+# 최적의 높이와 시간을 초기화
+min_time = float('inf')
+best_height = 0
 
-        SUM = 0
-        for num in diff:
-            if num == 0:
-                continue
-            elif num > 0:
-                SUM+=2*num #파기
-            else:
-                SUM+=abs(num)
+# 가능한 모든 높이 (min_height ~ max_height) 에 대해 반복
+for target_height in range(min_height, max_height + 1):
+    remove_blocks = 0
+    add_blocks = 0
+    for height in range(257):
+        if height > target_height:
+            remove_blocks += (height - target_height) * height_count[height]
+        elif height < target_height:
+            add_blocks += (target_height - height) * height_count[height]
+    
+    # 인벤토리에 있는 블록과 제거한 블록으로 충분히 채울 수 있는 경우
+    if remove_blocks + B >= add_blocks:
+        current_time = remove_blocks * 2 + add_blocks
+        if current_time < min_time or (current_time == min_time and target_height > best_height):
+            min_time = current_time
+            best_height = target_height
 
-        print(SUM,avg)
-
-        if i==0:
-            if flag:
-                print(SUM,avg)
-            else:
-                SUM_1 = SUM
-                avg_1 = avg
-        else:
-            if SUM==SUM_1:
-                print(SUM,avg)
-            elif SUM<SUM_1:
-                print(SUM,avg)
-            else:
-                print(SUM_1,avg_1)
+print(min_time, best_height)
