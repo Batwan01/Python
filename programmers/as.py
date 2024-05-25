@@ -1,3 +1,1 @@
-arr = [1,2]
-ass = [2,3]
-print(arr*ass)
+print("123"*4)
