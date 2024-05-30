@@ -1,5 +1,4 @@
 def solution(n, m):
-    answer = []
     num = 0
     a = n
     b = m
@@ -7,6 +6,5 @@ def solution(n, m):
         num = b%a
         b = a
         a = num
-    answer.append(b)
-    answer.append(n*m/b)
+    answer = [b,n*m/b]
     return answer
