@@ -4,6 +4,4 @@ def solution(numbers):
     for i in range(len(numbers)-1):
         arr = [numbers[i] + numbers[j] for j in range(i+1,len(numbers))]
         answer.append(arr)
-    answer = list(set(sum(answer,[])))
-    answer.sort()
-    return answer
+    return sorted(list(set(sum(answer,[]))))
