@@ -1,12 +1,12 @@
-#9시 44분 ->
-#n을 입력받아 n의 약수를 모두 더한 값을 리턴하는 함수
+#n인 정사각형 배열 형태 -> "공백"(" ") 또는 "벽"("#") 두 종류
+#지도 두개를 겹쳐서 하나라도 #가 있으면 벽, 둘다 공백이면 공백
+# 벽은 1 공백은 0
+def solution(n, arr1, arr2):
+    arr = []
+    for ar1,ar2 in zip(arr1, arr2):
+        ar1 = bin(ar1)
+        ar2 = bin(ar2)
+        arr.append(bin(ar1&ar2))
+    return arr
+solution(5,[9, 20, 28, 18, 11],[30, 1, 21, 17, 28])
 
-def solution(n):
-    sum_n = 0
-    for i in range(1,n):
-        if n//i == 0:
-            sum_n+=i
-    return sum_n
-
-
-print(solution(12))
