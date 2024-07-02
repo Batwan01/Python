@@ -7,7 +7,6 @@ def solution(food):
     for i in range(1,len(food)):
         if food[i] // 2 >= 1:
             arr.append(str(i) * (food[i]//2))
-    
     arr = ''.join(arr)
     answer = arr + '0' + arr[::-1]
     return answer
