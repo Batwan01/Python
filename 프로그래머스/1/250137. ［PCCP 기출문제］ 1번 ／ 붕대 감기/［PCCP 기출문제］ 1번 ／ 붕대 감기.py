@@ -8,14 +8,9 @@ def solution(bandage, health, attacks):
     
         attack_gap = attacks[i + 1][0] - attacks[i][0]
         if attack_gap <= 1: continue
-        elif attack_gap > bandage[0]:
-            if attack_gap//bandage[0] >= 1:
-                answer+= (attack_gap-1)*bandage[1] + bandage[2] * (attack_gap//bandage[0])
-            else:
-                answer+= (attack_gap-1)*bandage[1] + bandage[2]
         else:
-            answer+= (attack_gap-1)*bandage[1]
-            
+            answer += (attack_gap-1) * bandage[1] + (attack_gap-1) // bandage[0] * bandage[2] 
+                
         if answer > health: answer = health
 
     answer-=attacks[-1][1]
